@@ -39,11 +39,11 @@ const valueClass = 'font-mono text-2xl tabular-nums text-white'
 export function InfoBar(props: Props) {
   if (props.mode === 'home') {
     return (
-      <div className="grid w-full gap-2 grid-cols-[2fr_1fr_2fr]">
+      <div className="grid h-full w-full gap-4 grid-cols-[2.3fr_1fr_2.35fr]">
         <button
           type="button"
           onClick={props.onTempoTap}
-          className={`col-span-2 ${cellBase} ${cellTap}`}
+          className={`col-span-2 h-full ${cellBase} ${cellTap}`}
         >
           <div className={labelClass}>Tempo</div>
           <div className={valueClass}>{props.bpm}</div>
@@ -51,7 +51,7 @@ export function InfoBar(props: Props) {
         <button
           type="button"
           onClick={props.onCountTap}
-          className={`col-span-1 ${cellBase} ${cellTap}`}
+          className={`col-span-1 h-full ${cellBase} ${cellTap}`}
         >
           <div className={labelClass}>Count</div>
           <div className={valueClass}>{formatCount(props.group1, props.group2)}</div>
@@ -63,7 +63,7 @@ export function InfoBar(props: Props) {
   if (props.mode === 'numpad') {
     const hasPending = props.pending.length > 0
     return (
-      <div className={`${cellBase} flex w-full items-end justify-between gap-3`}>
+      <div className={`${cellBase} flex h-full w-full items-end justify-between gap-3`}>
         <div className={labelClass}>Tempo</div>
         <div className="flex items-baseline gap-3">
           <span className={`${valueClass} ${hasPending ? 'text-white/35' : ''}`}>
@@ -82,7 +82,7 @@ export function InfoBar(props: Props) {
 
   if (props.mode === 'count') {
     return (
-      <div className={`${cellBase} flex w-full items-end justify-between gap-3`}>
+      <div className={`${cellBase} flex h-full w-full items-end justify-between gap-3`}>
         <div className={labelClass}>Count</div>
         <div className={valueClass}>{formatCount(props.pendingG1, props.pendingG2)}</div>
       </div>

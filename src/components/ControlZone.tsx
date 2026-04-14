@@ -7,7 +7,7 @@ type Props = {
 
 export function ControlZone({ onBpmDelta, onTap }: Props) {
   return (
-    <div className="grid w-full min-h-0 flex-1 gap-2 grid-cols-[2fr_1fr_2fr] min-h-[180px]">
+    <div className="grid h-full w-full gap-4 grid-cols-[2.3fr_1fr_2.35fr]">
       <DragPad label="Coarse" step={5} sensitivity={0.12} onBpmDelta={onBpmDelta} />
       <DragPad label="Fine" step={1} sensitivity={0.1} onBpmDelta={onBpmDelta} />
       <button

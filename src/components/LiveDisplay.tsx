@@ -6,7 +6,6 @@ type Props = {
   group2: number
   currentBeat: number
   isPlaying: boolean
-  height?: number
   heightStep?: number
   groupGap?: number
 }
@@ -94,27 +93,26 @@ export function LiveDisplay({
   group2,
   currentBeat,
   isPlaying,
-  height = 230,
   heightStep = 32,
   groupGap = 16,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [width, setWidth] = useState(360)
+  const [size, setSize] = useState({ width: 360, height: 230 })
 
   useLayoutEffect(() => {
     const el = containerRef.current
     if (!el) return
     const ro = new ResizeObserver((entries) => {
-      const w = entries[0].contentRect.width
-      if (w > 0) setWidth(w)
+      const { width, height } = entries[0].contentRect
+      if (width > 0 && height > 0) setSize({ width, height })
     })
     ro.observe(el)
     return () => ro.disconnect()
   }, [])
 
   const rects = computeBeatRects({
-    outerWidth: width,
-    displayHeight: height,
+    outerWidth: size.width,
+    displayHeight: size.height,
     heightStep,
     group1,
     group2,
@@ -125,28 +123,30 @@ export function LiveDisplay({
   const maxPastDistance = Math.max(1, active)
 
   return (
-    <div ref={containerRef} className="relative w-full" style={{ height }}>
-      {rects.map((r) => {
-        let state: 'active' | 'past' | 'future'
-        let distance = 0
-        if (active < 0 || r.globalIndex > active) {
-          state = 'future'
-        } else if (r.globalIndex === active) {
-          state = 'active'
-        } else {
-          state = 'past'
-          distance = active - r.globalIndex
-        }
-        return (
-          <BeatLayer
-            key={r.globalIndex}
-            rect={r}
-            state={state}
-            pastDistance={distance}
-            maxPastDistance={maxPastDistance}
-          />
-        )
-      })}
+    <div className="h-full w-full p-[10px]">
+      <div ref={containerRef} className="relative h-full w-full">
+        {rects.map((r) => {
+          let state: 'active' | 'past' | 'future'
+          let distance = 0
+          if (active < 0 || r.globalIndex > active) {
+            state = 'future'
+          } else if (r.globalIndex === active) {
+            state = 'active'
+          } else {
+            state = 'past'
+            distance = active - r.globalIndex
+          }
+          return (
+            <BeatLayer
+              key={r.globalIndex}
+              rect={r}
+              state={state}
+              pastDistance={distance}
+              maxPastDistance={maxPastDistance}
+            />
+          )
+        })}
+      </div>
     </div>
   )
 }

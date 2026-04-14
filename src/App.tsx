@@ -181,7 +181,7 @@ function App() {
   const renderBottom = () => {
     if (mode === 'numpad') {
       return (
-        <div className="flex w-full gap-2">
+        <div className="flex h-full w-full gap-4">
           <BottomButton label="Cancel" onClick={cancelNumpad} variant="secondary" className="flex-1" />
           <BottomButton label="Set" onClick={onSetNumpad} className="flex-1" />
         </div>
@@ -189,7 +189,7 @@ function App() {
     }
     if (mode === 'count') {
       return (
-        <div className="flex w-full gap-2">
+        <div className="flex h-full w-full gap-4">
           <BottomButton label="Cancel" onClick={cancelCount} variant="secondary" className="flex-1" />
           <BottomButton label="Set" onClick={onSetCount} className="flex-1" />
         </div>
@@ -206,19 +206,24 @@ function App() {
 
   return (
     <div className="flex h-full w-full flex-col items-center bg-bg text-fg">
-      <div className="flex h-full w-full max-w-[480px] flex-col gap-3 px-4 pt-6 pb-[max(1rem,env(safe-area-inset-bottom))]">
-        <div className="flex items-end" style={{ height: 230 }}>
+      <div className="flex h-full w-full max-w-[480px] flex-col gap-4 px-4 pt-6 pb-[max(1rem,env(safe-area-inset-bottom))]">
+        <div className="w-full shrink-0" style={{ aspectRatio: '915 / 321' }}>
           <LiveDisplay
             group1={m.group1}
             group2={m.group2}
             currentBeat={m.currentBeat}
             isPlaying={m.isPlaying}
-            height={230}
           />
         </div>
-        {renderInfoBar()}
-        {renderControl()}
-        {renderBottom()}
+        <div className="w-full shrink-0" style={{ aspectRatio: '915 / 97' }}>
+          {renderInfoBar()}
+        </div>
+        <div className="w-full shrink-0" style={{ aspectRatio: '915 / 321' }}>
+          {renderControl()}
+        </div>
+        <div className="w-full shrink-0" style={{ aspectRatio: '915 / 96' }}>
+          {renderBottom()}
+        </div>
       </div>
     </div>
   )

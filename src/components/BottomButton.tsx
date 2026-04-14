@@ -23,7 +23,7 @@ export function BottomButton({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={`rounded-md py-5 text-lg uppercase tracking-[0.3em] transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${variantClasses[variant]} ${className}`}
+      className={`h-full rounded-md text-lg uppercase tracking-[0.3em] transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${variantClasses[variant]} ${className}`}
     >
       {label}
     </button>

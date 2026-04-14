@@ -21,7 +21,7 @@ export function CountEditor({ pendingG1, pendingG2, onChangeG1, onChangeG2 }: Pr
   const g2Options = useMemo(() => range(0, 16), [])
 
   return (
-    <div className="flex w-full min-h-0 flex-1 gap-2">
+    <div className="flex h-full w-full min-h-0 gap-4">
       <div className="flex min-h-0 flex-1 flex-col">
         <div className="mb-1 text-center text-[10px] uppercase tracking-widest text-white/50">
           Group 1

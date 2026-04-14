@@ -20,7 +20,7 @@ const KEYS: Array<{ label: string; kind: 'digit' | 'back' | 'spacer'; value?: st
 
 export function NumpadOverlay({ onDigit, onBackspace }: Props) {
   return (
-    <div className="grid w-full flex-1 grid-cols-3 gap-2 min-h-[180px]">
+    <div className="grid h-full w-full grid-cols-3 gap-2">
       {KEYS.map((k, i) => {
         if (k.kind === 'spacer') return <div key={i} />
         const handler = k.kind === 'digit' ? () => onDigit(k.value!) : onBackspace
