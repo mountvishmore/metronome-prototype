@@ -20,21 +20,23 @@ const KEYS: Array<{ label: string; kind: 'digit' | 'back' | 'spacer'; value?: st
 
 export function NumpadOverlay({ onDigit, onBackspace }: Props) {
   return (
-    <div className="grid h-full w-full grid-cols-3 gap-2">
-      {KEYS.map((k, i) => {
-        if (k.kind === 'spacer') return <div key={i} />
-        const handler = k.kind === 'digit' ? () => onDigit(k.value!) : onBackspace
-        return (
-          <button
-            key={i}
-            type="button"
-            onClick={handler}
-            className="rounded-md bg-white/8 hover:bg-white/12 active:bg-white/15 transition-colors font-mono text-2xl text-white"
-          >
-            {k.label}
-          </button>
-        )
-      })}
+    <div className="flex h-full w-full justify-center">
+      <div className="grid h-full w-[58.4%] grid-cols-3 grid-rows-4 gap-4">
+        {KEYS.map((k, i) => {
+          if (k.kind === 'spacer') return <div key={i} aria-hidden />
+          const handler = k.kind === 'digit' ? () => onDigit(k.value!) : onBackspace
+          return (
+            <button
+              key={i}
+              type="button"
+              onClick={handler}
+              className="rounded-md bg-white/8 hover:bg-white/12 active:bg-white/15 transition-colors font-mono text-2xl text-white"
+            >
+              {k.label}
+            </button>
+          )
+        })}
+      </div>
     </div>
   )
 }
