@@ -22,7 +22,6 @@ type CountProps = {
 type TapProps = {
   mode: 'tap'
   remaining: number
-  convergingBpm: number | null
 }
 
 type Props = HomeProps | NumpadProps | CountProps | TapProps
@@ -91,14 +90,9 @@ export function InfoBar(props: Props) {
 
   // tap
   return (
-    <div className={`${cellBase} flex w-full items-end justify-between gap-3`}>
+    <div className={`${cellBase} flex h-full w-full items-end justify-between gap-3`}>
       <div className={labelClass}>Keep tapping</div>
-      <div className={valueClass}>
-        {props.convergingBpm !== null && (
-          <span className="mr-3 text-white/70">~{props.convergingBpm} BPM</span>
-        )}
-        <span>×{props.remaining}</span>
-      </div>
+      <div className={valueClass}>{props.remaining}</div>
     </div>
   )
 }

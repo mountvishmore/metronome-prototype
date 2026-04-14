@@ -27,7 +27,6 @@ function App() {
   const tapsRef = useRef<number[]>([])
   const tapTimerRef = useRef<number | null>(null)
   const [tapCount, setTapCount] = useState(0)
-  const [convergingBpm, setConvergingBpm] = useState<number | null>(null)
 
   const clearTapTimer = useCallback(() => {
     if (tapTimerRef.current !== null) {
@@ -40,7 +39,6 @@ function App() {
     clearTapTimer()
     tapsRef.current = []
     setTapCount(0)
-    setConvergingBpm(null)
   }, [clearTapTimer])
 
   useEffect(() => () => clearTapTimer(), [clearTapTimer])
@@ -102,19 +100,17 @@ function App() {
     if (mode !== 'tap') {
       tapsRef.current = [now]
       setTapCount(1)
-      setConvergingBpm(null)
       setMode('tap')
     } else {
       tapsRef.current.push(now)
       const taps = tapsRef.current
-      const intervals: number[] = []
-      for (let i = 1; i < taps.length; i++) intervals.push(taps[i] - taps[i - 1])
-      const avg = intervals.reduce((a, b) => a + b, 0) / intervals.length
-      const bpm = Math.max(20, Math.min(300, Math.round(60000 / avg)))
-      setConvergingBpm(bpm)
       setTapCount(taps.length)
 
       if (taps.length >= TAPS_TO_CONFIRM) {
+        const intervals: number[] = []
+        for (let i = 1; i < taps.length; i++) intervals.push(taps[i] - taps[i - 1])
+        const avg = intervals.reduce((a, b) => a + b, 0) / intervals.length
+        const bpm = Math.max(20, Math.min(300, Math.round(60000 / avg)))
         m.setBpm(bpm)
         exitTap()
         setMode('home')
@@ -150,7 +146,7 @@ function App() {
       case 'count':
         return <InfoBar mode="count" pendingG1={m.group1} pendingG2={m.group2} />
       case 'tap':
-        return <InfoBar mode="tap" remaining={remainingTaps} convergingBpm={convergingBpm} />
+        return <InfoBar mode="tap" remaining={remainingTaps} />
     }
   }
 
