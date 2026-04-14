@@ -201,9 +201,9 @@ function App() {
   }
 
   return (
-    <div className="flex h-full w-full flex-col items-center bg-bg text-fg">
-      <div className="flex h-full w-full max-w-[480px] flex-col gap-4 px-4 pt-6 pb-[max(1rem,env(safe-area-inset-bottom))]">
-        <div className="w-full shrink-0" style={{ aspectRatio: '915 / 321' }}>
+    <div className="flex min-h-[100dvh] w-full items-center justify-center bg-[#1a1a1a] text-fg">
+      <div className="flex h-[100dvh] w-full max-h-[932px] max-w-[480px] flex-col gap-4 bg-bg p-4">
+        <div className="w-full min-h-0" style={{ flex: 321 }}>
           <LiveDisplay
             group1={m.group1}
             group2={m.group2}
@@ -211,13 +211,13 @@ function App() {
             isPlaying={m.isPlaying}
           />
         </div>
-        <div className="w-full shrink-0" style={{ aspectRatio: '915 / 97' }}>
+        <div className="w-full min-h-0" style={{ flex: 97 }}>
           {renderInfoBar()}
         </div>
-        <div className="w-full shrink-0" style={{ aspectRatio: '915 / 321' }}>
+        <div className="w-full min-h-0" style={{ flex: 321 }}>
           {renderControl()}
         </div>
-        <div className="w-full shrink-0" style={{ aspectRatio: '915 / 96' }}>
+        <div className="w-full min-h-0" style={{ flex: 96 }}>
           {renderBottom()}
         </div>
       </div>
