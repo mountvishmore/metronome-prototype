@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Figma__get_screenshot",
+      "Bash(npm --version)",
+      "Bash(npm create:*)",
+      "Bash(yes)",
+      "Read(//c/tmp/**)",
+      "Bash(rm -rf vite-scaffold)",
+      "Read(//tmp/**)",
+      "Bash(cp -r /tmp/vite-scaffold/. /c/Users/vishn/DEV/04-13-metronome-prototype/)",
+      "Bash(npm install:*)",
+      "Bash(npm i:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)",
+      "Bash(npm view:*)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:react-wheel-picker.chanhdai.com)"
+    ]
+  }
+}
