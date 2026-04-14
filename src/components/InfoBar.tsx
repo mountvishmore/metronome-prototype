@@ -62,7 +62,7 @@ export function InfoBar(props: Props) {
   if (props.mode === 'numpad') {
     const hasPending = props.pending.length > 0
     return (
-      <div className={`${cellBase} flex h-full w-full items-end justify-between gap-3`}>
+      <div className={`${cellBase} flex h-full w-full items-center justify-between gap-3 overflow-hidden`}>
         <div className={labelClass}>Tempo</div>
         <div className="flex items-baseline gap-3">
           <span className={`${valueClass} ${hasPending ? 'text-white/35' : ''}`}>
@@ -81,7 +81,7 @@ export function InfoBar(props: Props) {
 
   if (props.mode === 'count') {
     return (
-      <div className={`${cellBase} flex h-full w-full items-end justify-between gap-3`}>
+      <div className={`${cellBase} flex h-full w-full items-center justify-between gap-3 overflow-hidden`}>
         <div className={labelClass}>Count</div>
         <div className={valueClass}>{formatCount(props.pendingG1, props.pendingG2)}</div>
       </div>
@@ -90,7 +90,7 @@ export function InfoBar(props: Props) {
 
   // tap
   return (
-    <div className={`${cellBase} flex h-full w-full items-end justify-between gap-3`}>
+    <div className={`${cellBase} flex h-full w-full items-center justify-between gap-3 overflow-hidden`}>
       <div className={labelClass}>Keep tapping</div>
       <div className={valueClass}>{props.remaining}</div>
     </div>

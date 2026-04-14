@@ -211,7 +211,7 @@ function App() {
             isPlaying={m.isPlaying}
           />
         </div>
-        <div className="w-full min-h-0" style={{ flex: 97 }}>
+        <div className="w-full min-h-0 overflow-hidden" style={{ flex: 97 }} key={`info-${mode}`}>
           {renderInfoBar()}
         </div>
         <div className="w-full min-h-0" style={{ flex: 321 }}>
