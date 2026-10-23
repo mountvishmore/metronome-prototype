@@ -35,3 +35,11 @@ dist-ssr
 
 # Vercel
 .vercel
+
+# Security: secrets, review checkouts and evidence
+.env*
+!.env.example
+/.claude/worktrees/
+/.evidence/
+node_modules/
+dist/
