@@ -1,19 +1,15 @@
-# Security repair handoff
+# Security repair handoff — final local pass
 
-Status: local repair milestone ready for review, not deployed; full security effort unfinished.
-
-Branch: codex/security-20261023
-Base/last commit before repair commit: c6b4b9126b1304ce08e8e46c0fcc585c89175f93
+Status: local remediation completed to compatible dependency boundaries; review required. Not pushed, merged or deployed.
+Branch: codex/security-20261023. Last commit before this handoff: 936def9.
 Worktree: C:/Users/vishn/DEV/apps/metronome/.claude/worktrees/security-20261023
 
-Updated selected vulnerable dependencies and refreshed transitive versions within existing package constraints.
+Changes: vite 8.3.5; package-lock refresh within existing constraints; env/evidence/worktree ignore coverage. Specialized auth/public-output changes are described in the final report.
 
-Versions: vite 8.3.5. All repairs add broad env, evidence, and nested worktree ignore coverage.
+Run: npm run build. Existing dev script: vite. Host npm wrapper is broken; verification used Node with npm-cli.js. No persistent port/network settings changed.
 
-Run from this worktree: npm run build; dev script: vite. npm wrapper on this host was broken; verification invoked npm-cli.js using Node directly.
+Verification: build PASS; lint PASS; whitespace diff check PASS. No project unit suite run; build and available lint recorded. Browser smoke: PASS. Logs/screenshots: .evidence.
 
-Verified: final build PASS; lint: PASS; git diff --check PASS. Evidence: .evidence and C:/Users/vishn/DEV/research/security-review. Cura 4 security unit cases and 8 built HTTP cases passed; portfolio 4 HTTP cases passed; Noro release fixture and 7 model tests passed. These targeted tests apply only to their respective projects.
+Limitations: see C:/Users/vishn/DEV/research/security-review/DEV-security-repair-final-2026-10-23.md and REPAIR-DEPENDENCIES.md for residual advisories, exact failed gates and deployed-access block. No claim of full security or absence of compromise. No live Vercel verification, full visual matrix or human audio listening.
 
-Not verified: deployed settings, cloud DB/runtime, browser end-to-end UI/audio/session persistence, recovery operations. Existing lint errors were not suppressed. Remaining advisory matches are in REPAIR-DEPENDENCIES.md.
-
-Integration: do not overwrite the original checkout or other agents' dirty work. Vinyl repair starts at clean HEAD and excludes the original uncommitted UI/package changes. Learning and cancellation were non-Git sources; isolated snapshots have local Git history and no remote. Noro requires separate commit authorization. Review dependency compatibility and diff before merge. No push/deploy is authorized.
+Integration: preserve original dirty work. This worktree generally starts from committed HEAD; dirty source changes outside Vinyl/Noro were not folded in. Vinyl integrated review copy preserves its original 10 changed/untracked files, hash-verified unchanged at source; prefer that branch over the clean-scaffold repair. Noro includes copied active persistence work and stays uncommitted per project rule. Non-Git sources use isolated snapshot repositories. No production secrets were created.
